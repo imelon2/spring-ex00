@@ -17,16 +17,25 @@ public class JDBCTests {
 		} catch (Exception e) {
 			fail();
 		}
-		String url = "jdbc:mariadb://3.36.67.156/test2";
+		
+		String url = "jdbc:mariadb://13.125.118.27/test";
 		String user = "root";
 		String password = "wnddkdwjdqhcjfl1";
+		
 		try (Connection con = DriverManager.getConnection(url, user, password)) {
 			
 			assertNotNull(con);
 			
-		}catch (Exception e) {
+		} catch (Exception e) {
 			fail();
 		}
 	}
 
 }
+
+
+
+
+
+
+

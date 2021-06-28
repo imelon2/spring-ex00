@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ToDoDTO {
+public class TodoDTO {
 	private String title;
-	private Date duoDate;	
+	private Date dueDate;
 }

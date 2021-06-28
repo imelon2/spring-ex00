@@ -1,4 +1,4 @@
-package org.zerock.controller.lecture;
+package org.zerock.controller.lecture.normal;
 
 import java.util.Date;
 
@@ -12,11 +12,17 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/ex05/*")
 public class Ex05Controller {
+	
 	@RequestMapping("/sub01")
-	private void method01(@DateTimeFormat(pattern = "yyyy-mm-dd") Date date) {
+	public void method01(@DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
 		log.info("ex05, sub01 method");
 		log.info(date);
-		
-
 	}
 }
+
+
+
+
+
+
+
