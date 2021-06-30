@@ -8,7 +8,7 @@
 		INSERT INTO tbl_reply (bno, reply, replyer)
 		VALUES (#{bno}, #{reply}, #{replyer})
 	</insert>
-	
+
 	<select id="read" resultType="org.zerock.domain.ReplyVO">
 		SELECT
 			rno rno,
@@ -39,6 +39,24 @@
 			updateDate = now()
 		WHERE rno = #{rno}
 	</update>
+	
+	
+	<select id="getList" resultType="org.zerock.domain.ReplyVO">
+		SELECT
+			bno bno,
+			rno rno,
+			reply reply,
+			replyer replyer,
+			replyDate replyDate,
+			updateDate updateDate
+		FROM
+			tbl_reply
+		WHERE
+			bno = #{bno}
+		ORDER BY rno ASC
+	
+	
+	</select>
 </mapper>
 
 
