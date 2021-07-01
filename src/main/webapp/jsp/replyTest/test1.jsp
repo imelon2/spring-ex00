@@ -15,7 +15,7 @@
 			$(function() {
 				$("#btn1").click(function() {
 					var data = {
-						bno : 33,
+						bno : 34,
 						reply : "새로운 댓글",
 						replyer : "user00"
 					}
@@ -62,7 +62,7 @@
 		<script>
 			$(function() {
 				$("#btn3").click(function() {
-					var bno = 33;
+					var bno = 34;
 
 					$.get({
 						url : "${appRoot}/replies/pages/" + bno,
