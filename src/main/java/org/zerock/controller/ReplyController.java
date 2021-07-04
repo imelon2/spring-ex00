@@ -28,7 +28,7 @@ public class ReplyController {
 	private ReplyService service;
 	
 	
-	
+	// 데이터 전송하는거
 	@PostMapping("/new")
 									  // 요청받은 내용을 vo로 전달 역할
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
@@ -42,7 +42,7 @@ public class ReplyController {
 			return new ResponseEntity<String> (HttpStatus.INTERNAL_SERVER_ERROR);	
 		}	
 	}
-
+	// page데이터 갖고 오는거
 	@GetMapping("/pages/{bno}") //경로에서 오는 데이터를 파라미터로 넣으려면 @PathVariable
 	public List<ReplyVO> getList(@PathVariable("bno") Long bno) {
 		
