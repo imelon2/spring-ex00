@@ -16,7 +16,7 @@
 		<!-- aws -->
 		<aws.java.sdk.version>2.16.1</aws.java.sdk.version>
 	</properties>
-	
+
 	<!-- aws -->
 	<dependencyManagement>
 		<dependencies>
@@ -31,6 +31,33 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- spring security -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- aws -->
 		<dependency>
 			<groupId>software.amazon.awssdk</groupId>
