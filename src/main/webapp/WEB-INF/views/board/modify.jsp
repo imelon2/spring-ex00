@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	<div class="row">
 		<div class="col-12">
-			<form id="modify-form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-data">
+			<form id="modify-form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-data" >
 				<input hidden name="bno" value="${board.bno }" />
 				<div class="form-group">
 					<label for="input1">제목</label>

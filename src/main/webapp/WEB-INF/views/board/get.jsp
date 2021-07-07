@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="bd" tagdir="/WEB-INF/tags/board"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,12 +15,14 @@
 <script>
 var appRoot = "${appRoot}";
 var boardBno = "${board.bno}";
+var userid = "${pinfo.member.userid}";
 </script>
 <script src="${appRoot }/resources/js/get.js"></script> 
 
 </head>
 <body>
-	<bd:navbar></bd:navbar>
+	<bd:navbar>
+	</bd:navbar>
 
 	<div class="container">
 
@@ -51,9 +54,9 @@ var boardBno = "${board.bno}";
 					</c:if>
 					
 					<div class="form-group">
-						<label for="input2">작성자</label> <input readonly="readonly"
-							id="input2" class="form-control" name="writer"
-							value="${board.writer }">
+						<label for="input2">작성자</label> 
+						<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${board.writer}">
+						<input readonly="readonly" class="form-control" value="${board.writerName }">
 					</div>
 
 					<c:url value="/board/modify" var="modifyUrl">
@@ -63,20 +66,24 @@ var boardBno = "${board.bno}";
 						<c:param name="type" value="${cri.type }" />
 						<c:param name="keyword" value="${cri.keyword }" />
 					</c:url>
-
+				<c:if test="${pinfo.member.userid == board.writer }"> 
 					<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>
+				</c:if>
+				
 				</form>
 			</div>
 		</div>
 	</div>
 
+	<!-- 댓글 작성 -->
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
 				<h3>댓글</h3>
+		<sec:authorize access="isAuthenticated()">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
+		</sec:authorize>
 				<ul class="" id="reply-list-container">
-				
 				</ul>
 			</div>
 		</div>
@@ -100,8 +107,8 @@ var boardBno = "${board.bno}";
 						<input type="text" value="${board.bno }" readonly hidden
 							id="reply-bno-input1">
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">작성자</label> <input
-								type="text" class="form-control" id="reply-replyer-input1">
+							<label for="recipient-name" class="col-form-label">작성자</label> 
+							<input type="text" class="form-control" id="reply-replyer-input1">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">댓글</label>
@@ -151,10 +158,10 @@ var boardBno = "${board.bno}";
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary"
-						id="reply-modify-btn1">댓글 수정</button>
-					<button type="button" class="btn btn-danger" id="reply-delete-btn1">댓글
-						삭제</button>
+						<span id="reply-modify-delete-wrapper">
+					<button type="button" class="btn btn-primary" id="reply-modify-btn1">댓글 수정</button>
+					<button type="button" class="btn btn-danger" id="reply-delete-btn1">댓글삭제</button>
+						</span>
 				</div>
 			</div>
 		</div>

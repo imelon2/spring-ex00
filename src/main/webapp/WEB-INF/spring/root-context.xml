@@ -20,6 +20,7 @@
 		<property name="maximumPoolSize" value="1"></property>
 	</bean>
 	
+	<!-- sql접속정보 가지고 있는 bean -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>

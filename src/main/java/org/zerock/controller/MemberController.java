@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j;
-
+// 로그인 url
 @Controller
 @RequestMapping("/member")
 @Log4j

@@ -24,7 +24,14 @@
 						<label for="input2">패스워드</label> <input name="password"
 							type="password" class="form-control" /> 
 					</div>
-					<input type="submit">
+					
+					<div class="form-group form-check">
+						<!-- name="remember-me"요것이 뽀인트여 -->
+						<input name="remember-me" type="checkbox" class="form-check-input" id="checkbox1">
+						<label class="form-check-label" for="checkbox1">remember me</label>	
+					</div>
+					
+					<input type="submit" value="로그인">
 				</form>
 			</div>
 		</div>

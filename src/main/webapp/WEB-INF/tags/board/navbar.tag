@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/board/list" var="listUrl">
 	<c:if test="${not empty cri.pageNum }">
@@ -37,8 +38,10 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item"><a class="nav-link" href="${listUrl }"><i
 					class="fas fa-list"></i> 목록보기</a></li>
+		<sec:authorize access="isAuthenticated()">
 			<li class="nav-item"><a class="nav-link" href="${registerUrl }"><i
 					class="fas fa-pen"></i> 글쓰기</a></li>
+		</sec:authorize>
 			<li class="nav-item"><a class="nav-link"
 				href="${appRoot}/secure/all">모두</a></li>
 			<li class="nav-item"><a class="nav-link"
@@ -47,10 +50,13 @@
 				href="${appRoot }/secure/admin">어드민만</a></li>
 		</ul>
 	</div>
+	<!-- 로그아웃 기능 member허가 받은 사람에게만 보여지게 하기 -->
+	<sec:authorize access="isAuthenticated()">
+	  <form action="${appRoot }/logout" method="post">
+	  	<input type="submit" class="btn btn-outline-secondary" value="로그아웃">
+	  </form>
+  </sec:authorize>
 
-	<form action="${appRoot }/logout" method="post">
-		<input type="submit" class="btn btn-outline-secondary" value="로그아웃">
-	</form>
 
 	<form action="${listUrl }" method="get" class="form-inline">
 		<select name="type" class="form-control mr-sm-2">

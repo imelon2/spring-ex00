@@ -3,6 +3,7 @@ package org.zerock.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class BoardController {
 		
 		// view로 포워드
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String register(BoardVO board,@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		
@@ -81,7 +82,11 @@ public class BoardController {
 		
 		// forward 
 	}
-
+	
+	// 책 720아래  로그인한 이름과 게시물을 작성자가 같을때만 실행 될 수 있게 security설정
+	//         principal : 로그인한 정보
+	//				로그인한 유저의 이름 == 작성자의 이름 같아야 수정 가능
+	@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("/modify")
 	public String modify(BoardVO board, Criteria cri,@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		// request parameter 수집
@@ -104,10 +109,10 @@ public class BoardController {
 		// forward or redirect
 		return "redirect:/board/list";
 	}
-	
+	@PreAuthorize("principal.username== #writer")
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno,
-			Criteria cri, RedirectAttributes rttr) {
+			Criteria cri, RedirectAttributes rttr, String writer) {
 		// parameter 수집
 		
 		// service 일
@@ -129,6 +134,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()") // 책 673p
 	public void register(@ModelAttribute("cri") Criteria cri) {
 		// forward /WEB-INF/views/board/register.jsp
 	}

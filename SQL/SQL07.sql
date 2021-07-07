@@ -14,3 +14,4 @@ DELETE FROM tbl_board_file;
 
 ALTER TABLE tbl_board_file
 add FOREIGN KEY (bno) REFERENCES tbl_board(bno);
+
