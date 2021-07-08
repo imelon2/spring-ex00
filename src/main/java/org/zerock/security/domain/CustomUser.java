@@ -12,16 +12,16 @@ import org.zerock.domain.AuthVO;
 import org.zerock.domain.MemberVO;
 
 import lombok.Getter;
+import lombok.Setter;
 
 // memberVO를 CustomUser로 변환하기 책 668쪽 람다
 public class CustomUser extends User{
-	
+	@Setter
 	@Getter
 	private MemberVO member; 
 
 	public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
-		// TODO Auto-generated constructor stub
 	}
 
 	public CustomUser(MemberVO vo) {
@@ -31,5 +31,5 @@ public class CustomUser extends User{
 		
 		member = vo;
 	}
-	
+
 }

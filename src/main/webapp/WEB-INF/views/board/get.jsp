@@ -108,7 +108,8 @@ var userid = "${pinfo.member.userid}";
 							id="reply-bno-input1">
 						<div class="form-group">
 							<label for="recipient-name" class="col-form-label">작성자</label> 
-							<input type="text" class="form-control" id="reply-replyer-input1">
+							<input class="form-control" id="reply-replyer-input1" value="${pinfo.member.userid }" type="hidden">
+							<input type="text" readonly="readonly" value="${pinfo.member.userName }" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">댓글</label>
@@ -145,9 +146,9 @@ var userid = "${pinfo.member.userid}";
 						<input type="text" value="${board.bno }" readonly hidden
 							id="reply-bno-input2">
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">작성자</label> <input
-								type="text" class="form-control" id="reply-replyer-input2"
-								readonly>
+							 <label for="recipient-name" class="col-form-label">작성자</label>
+            <input id="reply-replyerName-input2" class="form-control" readonly type="text" />
+            <input type="hidden" class="form-control" id="reply-replyer-input2" readonly>
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">댓글</label>
