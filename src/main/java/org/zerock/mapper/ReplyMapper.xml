@@ -74,6 +74,12 @@
 		WHERE bno = #{bno}
 	
 	</delete>
+	<!-- 삭제하려는 userid가 해당 게시물 bno에 있는 댓글(번호로 구분)을 삭제 -->
+	<delete id="removeByBnoByUserid">
+		DELETE FROM tbl_reply
+		WHERE bno IN (SELECT bno FROM tbl_board WHERE writer = #{userid})
+	
+	</delete>
 </mapper>
 
 
