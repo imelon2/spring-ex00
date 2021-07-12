@@ -55,7 +55,7 @@ public class BoardController {
 		
 		// BoardVO의 FileName에 type="file" 을 넣어줌
 		//
-		board.setFileName(file.getOriginalFilename());
+		board.setFileName((file).getOriginalFilename());
 		// service에게 등록업무 시키고
 		service.register(board, file); // title, content, writer, file
 		
