@@ -1,5 +1,16 @@
 use spr1;
 
+CREATE TABLE tbl_address (
+postcode int,
+address VARCHAR(30),
+detailAddress VARCHAR(30),
+extraAddress VARCHAR(30),
+lat DECIMAL(12, 7),
+lag decimal(12, 7)
+);
+
+SELECT * FROM tbl_address;
+
 CREATE TABLE tbl_member (
 id int AUTO_INCREMENT
 userid VARCHAR(50) PRIMARY KEY,
@@ -32,3 +43,24 @@ SELECT
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid= a.userid
 	WHERE
 		m.userid= 'admin';
+        use spr1;
+        
+SELECT * FROM tbl_board;
+SELECT * FROM tbl_tx_test1;
+
+CREATE TABLE tbl_address (
+postcode int,
+address VARCHAR(30),
+detailAddress VARCHAR(30),
+extraAddress VARCHAR(30)
+);
+
+SELECT * FROM tbl_address;
+
+SELECT address, lat, lag FROM tbl_address
+WHERE (127.1262416 - 0.005 < lat < 127.1262416 + 0.005) AND (37.3653948 - 0.005 < 'lag' < 37.3653948 + 0.005);
+
+SELECT address, lat, lag
+FROM tbl_address
+WHERE address = "경기 성남시 분당구 수내동 95-13";
+

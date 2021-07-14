@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.zerock.mapper.AddressMapper">
+
+<insert id="register">
+INSERT INTO tbl_address (postcode, address, detailAddress, extraAddress, lag, lat)
+VALUES (#{postcode} ,#{address}, #{detailAddress}, #{extraAddress}, #{lag}, #{lat})
+</insert>
+
+<select id="getaddress" resultType="String">
+SELECT address
+FROM tbl_address
+WHERE address ="경기 성남시 분당구 수내동 95-13"
+
+</select>
+
+
+<select id="getlatlag1" resultType="org.zerock.domain.AddressVO">
+<![CDATA[
+SELECT
+	address address,
+	lat lat,
+	lag lag
+FROM tbl_address
+WHERE address = "경기 성남시 분당구 수내동 95-13"
+ ]]>
+</select>
+
+<select id="getlatlag2" resultType="org.zerock.domain.AddressVO">
+
+<![CDATA[
+
+SELECT
+	address address,
+	lat lat,
+	lag lag
+FROM tbl_address
+
+WHERE lat > #{lat} - 0.005 AND lat < #{lat} + 0.005 AND
+	  lag > #{lag} - 0.005 AND lag < #{lag} + 0.005
+
+
+
+ ]]>
+
+</select>
+
+</mapper>
