@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title> 지도 표기</title>
+    <title> 주소 갖고와서 위경도 변환</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5"></script>
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5&submodules=geocoder"></script>
 
@@ -25,7 +25,7 @@
 <script type="text/javascript">
 
 $(function() {
-		
+		/* 데이터(주소) 갖고오기 */
 		$.ajax({
 			type : 'post',
 			url : '${appRoot}/test/test1',

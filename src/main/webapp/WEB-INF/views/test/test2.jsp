@@ -5,12 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type=""></script>
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<title>중앙지점 주변 마커 호출</title>
+<title>고객주변 빨래방 찾기</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5"></script>
 </head>
@@ -28,24 +30,47 @@
 
 					var lat = data.lat;
 					var lag = data.lag;
+					var address = data.address;
+					
 					console.log(lat);
 					console.log(lag);
 
 					/* 지도 */
 					var map = new naver.maps.Map('map', {
 						center : new naver.maps.LatLng(lag, lat),
-						zoom : 15
+						zoom : 16
 					});
 
 					/* 유저 마커 */
-					var marker = new naver.maps.Marker({
-						position : new naver.maps.LatLng(lag, lat),
-						map : map
-					});
+					var markerOptions = {
+						position: new naver.maps.LatLng(lag, lat),
+					    map: map,
+					    icon: {
+					    	
+					    	
+					    	
+					        content: [	
+						        		`<div onmouseover="$('#ad1').show();" onmouseout="$('#ad1').hide();">` +
+							        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+							        		`<div id="ad1" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+							        		background-color:#88C9F2; color:white; text-align:center; border:1px;
+							        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: 수내3동</div>`+
+						        		`</div>`
+					        	
+					        	].join(''),
+					        	
+					        size: new naver.maps.Size(22, 35),
+					        anchor: new naver.maps.Point(15, 35)
+					    },
+					    animation: naver.maps.Animation.BOUNCE
+					};
+					var marker = new naver.maps.Marker(markerOptions);
+
 
 					var data = {
 						lat : lat,
-						lag : lag
+						lag : lag,
+						address : address
 					}
 
 					$.ajax({
@@ -58,13 +83,28 @@
 							console.log(list);
 							
 							/* 집주변 빨래방 마커 */
-						for(var address of list ){
+						for(let address of list ){
 							
-							 var marker = new naver.maps.Marker({
-								position : new naver.maps.LatLng(address.lag, address.lat),
-								map : map  
-							});
-						}
+							let laundrymarker = {
+									position: new naver.maps.LatLng(address.lag, address.lat),
+								    map: map,
+								    icon: {
+								        content: [	
+									        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
+										        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+										        		`<div class="ad2"  style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+																        		  background-color:#88C9F2; color:white; text-align:center; border:1px;
+																        	  	  border-radius:14px; opacity:75%; display:none">평점:4.0<br> 주소: \${address.address} </div>`+                   
+									        		`</div>`
+												 ].join('')
+								        	
+								       /*  size: new naver.maps.Size(22, 35),
+								        anchor: new naver.maps.Point(15, 35)  */
+								    }
+								};
+								 let marker = new naver.maps.Marker(laundrymarker);
+						
+							}
 
 						}
 					})
@@ -76,5 +116,6 @@
 			})
 		})
 	</script>
+
 </body>
 </html>

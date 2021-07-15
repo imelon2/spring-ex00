@@ -39,7 +39,8 @@ SELECT
 	lag lag
 FROM tbl_address
 
-WHERE lat > #{lat} - 0.005 AND lat < #{lat} + 0.005 AND
+WHERE address != #{address} AND
+	  lat > #{lat} - 0.005 AND lat < #{lat} + 0.005 AND
 	  lag > #{lag} - 0.005 AND lag < #{lag} + 0.005
 
 

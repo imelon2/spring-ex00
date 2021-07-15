@@ -14,7 +14,9 @@
 </head>
 <body>
 <div id="map" style="width:50%;height:400px;"></div>
-
+<div style="width:100px; height:100px;text-align:center;padding:10px; background-color:black"></div>
+<div style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px; background-color:#88C9F2;
+color:white; text-align:center; border:1px; border-radius:14px; opacity:75%"> 낭낭</div>
 <script>
 var mapOptions = {
     center: new naver.maps.LatLng(36.3595704, 127.105399),

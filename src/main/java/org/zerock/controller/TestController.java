@@ -39,7 +39,7 @@ public class TestController {
 	@ResponseBody
 	public ResponseEntity<String> test1(Model model) {
 		String address = service.getaddress();
-		log.info(address);
+		/* log.info(address); */
 		
 		
 		
@@ -56,7 +56,7 @@ public class TestController {
 	@ResponseBody
 	public ResponseEntity<AddressVO> test2(Model model) {
 			AddressVO vo =service.getlatlag1();
-			log.info(vo);
+			/* log.info(vo); */
 			
 			return new ResponseEntity<AddressVO> (vo, HttpStatus.OK);
 		
@@ -67,7 +67,12 @@ public class TestController {
 	@ResponseBody
 	public List<AddressVO> test3(@RequestBody AddressVO vo) {
 		List<AddressVO> list = service.getlatlag2(vo);
-		log.info(list);
+		/* log.info(list); */
 		return list;
+	}
+	
+	@GetMapping("/test3")
+	public void test3() {
+		
 	}
 }
