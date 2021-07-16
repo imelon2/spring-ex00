@@ -25,7 +25,9 @@
 			var address = $("#sample6_address").val();
 			var detailAddress = $("#sample6_detailAddress").val();
 			var extraAddress = $("#sample6_extraAddress").val();
+			var fullAddress = postcode.concat(address,detailAddress,detailAddress);
 			
+			console.log(fullAddress);
 			naver.maps.Service.geocode({
 		        query: address // String 타입의 주소값
 		    }, function(status, response) {

@@ -14,7 +14,8 @@
 <title>구독페이지 빨래방추천</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5&submodules=geocoder"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5&submodules=geocoder"></script>
 
 <!--  DB로 주소 정보 보내기 -->
 <script type="text/javascript">
@@ -75,6 +76,7 @@
 <!-- 주소록 검색 카카오api -->
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 	function sample6_execDaumPostcode() {
 		new daum.Postcode(
@@ -128,7 +130,9 @@
 						
 						console.log(addr);
 						
-					/* addr을 위경도로 전환 후 주변 빨래방 정보 갖고오기 */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */						
+/* addr을 위경도로 전환 후 주변 빨래방 정보 갖고오기 */
+					
 						/* 주소 위경도 전환 코드 */
 						naver.maps.Service.geocode({
 						        query: addr // String 타입의 주소값
@@ -148,146 +152,145 @@
 						        console.log(lat);
 						        console.log(lag);
 						        
-						        var data = {
-										lat : lat,
-										lag : lag,
-										address : addr
-									}
+						
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */							
+/* 고객 주변 빨래방(b2b) 보여주기 (2개) */
+						
+					/* 지도 1번 */
+						var map1 = new naver.maps.Map('map1', {
+							center : new naver.maps.LatLng(lag, lat),
+							zoom : 15
+						});
+									
+					 /* 지도2번 */
+						var map2 = new naver.maps.Map('map2', {
+							center : new naver.maps.LatLng(lag, lat),
+							zoom : 15
+						});
+						
+					/* 1번 유저 마커 */
+					var markerOptions = {
+						position: new naver.maps.LatLng(lag, lat),
+					    map: map1,
+					    icon: {
+				    	
+				    	
+				    	
+				        content: [	
+					        		`<div onmouseover="$(this).find('.ad1').show();" onmouseout="$(this).find('.ad1').hide();">` +
+						        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+						        		`<div class="ad1" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+						        		background-color:#88C9F2; color:white; text-align:center; border:1px;
+						        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: \${addr}</div>`+
+					        		`</div>`
+				        	
+				        	].join(''),
+				        	
+				        size: new naver.maps.Size(22, 35),
+				        anchor: new naver.maps.Point(15, 35)
+				    }
+				   
+				};
+				var marker = new naver.maps.Marker(markerOptions);
+
+				
+					/* 2번 유저마커*/
+					var markerOptions = {
+						position: new naver.maps.LatLng(lag, lat),
+					    map: map2,
+					    icon: {
+					    	
+					    	
+					    	
+					        content: [	
+						        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
+							        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+							        		`<div class="ad2" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+							        		background-color:#88C9F2; color:white; text-align:center; border:1px;
+							        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: \${addr}</div>`+
+						        		`</div>`
+					        	
+					        	].join(''),
+					        	
+					        size: new naver.maps.Size(22, 35),
+					        anchor: new naver.maps.Point(15, 35)
+					    }
+					    
+					};
+					var marker = new naver.maps.Marker(markerOptions);
+								
 						      /* 집 주변 빨래방 정보 갖고오기 */  
-						        $.ajax({
+					        var data = {
+									lat : lat,
+									lag : lag,
+									address : addr
+										}
+									
+						       $.ajax({
 						        	type : 'post',
 						        	url : '${appRoot}/test/test3',
 									data : JSON.stringify(data),
 									contentType : "application/json",
 									success : function(list) {
 										console.log(list[0].address);
-						/* 갖고온 정보(list)의 위경도를 마커위경도에 넣어 두개 보여주기(b2b가게) */
-						
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */							
-					/* 지도 1번 */
-						var map = new naver.maps.Map('map1', {
-							center : new naver.maps.LatLng(lag, lat),
-							zoom : 15
-						});
-									
-									/* 1번 유저 마커 */
-									var markerOptions = {
-										position: new naver.maps.LatLng(lag, lat),
-									    map: map,
-									    icon: {
-								    	
-								    	
-								    	
-								        content: [	
-									        		`<div onmouseover="$(this).find('.ad1').show();" onmouseout="$(this).find('.ad1').hide();">` +
-										        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
-										        		`<div class="ad1" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
-										        		background-color:#88C9F2; color:white; text-align:center; border:1px;
-										        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: \${addr}</div>`+
-									        		`</div>`
-								        	
-								        	].join(''),
-								        	
-								        size: new naver.maps.Size(22, 35),
-								        anchor: new naver.maps.Point(15, 35)
-								    }
-								   
-								};
-								var marker = new naver.maps.Marker(markerOptions);
-								
-								/* 1번 추천 빨래방 마커 */
-								let laundrymarker1 = {
-										position: new naver.maps.LatLng(list[0].lag, list[0].lat),
-									    map: map,
-									    icon: {
-									        content: [	
-										        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
-											        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
-											        		`<div class="ad2"  style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
-																	        		  background-color:#88C9F2; color:white; text-align:center; border:1px;
-																	        	  	  border-radius:14px; opacity:75%; display:none">평점:4.0<br> 주소: \${list[0].address} </div>`+                   
-										        		`</div>`
-													 ].join('')
-									        	
-									       /*  size: new naver.maps.Size(22, 35),
-									        anchor: new naver.maps.Point(15, 35)  */
-									    },
-									    animation: naver.maps.Animation.BOUNCE
-									};
-								 let marker1 = new naver.maps.Marker(laundrymarker1);
-								 
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */								
-					 /* 지도2번 */
-						var map = new naver.maps.Map('map2', {
-							center : new naver.maps.LatLng(lag, lat),
-							zoom : 15
-						});
-						
-								/* 유저 마커 */
-								/* 2번 */
-								var markerOptions = {
-									position: new naver.maps.LatLng(lag, lat),
-								    map: map,
-								    icon: {
-								    	
-								    	
-								    	
-								        content: [	
-									        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
-										        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
-										        		`<div class="ad2" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
-										        		background-color:#88C9F2; color:white; text-align:center; border:1px;
-										        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: \${addr}</div>`+
-									        		`</div>`
-								        	
-								        	].join(''),
-								        	
-								        size: new naver.maps.Size(22, 35),
-								        anchor: new naver.maps.Point(15, 35)
-								    }
-								    
-								};
-								var marker = new naver.maps.Marker(markerOptions);
-								
-								/* 2번 추천 빨래방 마커 */
-								let laundrymarker2 = {
-										position: new naver.maps.LatLng(list[1].lag, list[1].lat),
-									    map: map,
-									    icon: {
-									        content: [	
-										        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
-											        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
-											        		`<div class="ad2"  style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
-																	        		  background-color:#88C9F2; color:white; text-align:center; border:1px;
-																	        	  	  border-radius:14px; opacity:75%; display:none">평점:4.0<br> 주소: \${list[1].address} </div>`+                   
-										        		`</div>`
-													 ].join('')
-									        	
-									       /*  size: new naver.maps.Size(22, 35),
-									        anchor: new naver.maps.Point(15, 35)  */
-									    },
-									    animation: naver.maps.Animation.BOUNCE
-									};
-								 let marker2 = new naver.maps.Marker(laundrymarker2);
+										
+										/* 1번 추천 빨래방 마커 */
+										let laundrymarker1 = {
+												position: new naver.maps.LatLng(list[0].lag, list[0].lat),
+											    map: map1,
+											    icon: {
+											        content: [	
+												        		`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
+													        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+													        		`<div class="ad2"  style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+																			        		  background-color:#88C9F2; color:white; text-align:center; border:1px;
+																			        	  	  border-radius:14px; opacity:75%; display:none">평점:4.0<br> 주소: \${list[0].address} </div>`+                   
+												        		`</div>`
+															 ].join('')		
+															 /*  size: new naver.maps.Size(22, 35),
+														        anchor: new naver.maps.Point(15, 35)  */
+														    },
+														    animation: naver.maps.Animation.BOUNCE
+														};
+													 let marker1 = new naver.maps.Marker(laundrymarker1);
+													 
+										/* 2번 추천 빨래방 마커 */
+										let laundrymarker2 = {
+												position: new naver.maps.LatLng(list[1].lag, list[1].lat),
+												map: map2,
+												icon: {
+													content: [	
+																`<div onmouseover="$(this).find('.ad2').show();" onmouseout="$(this).find('.ad2').hide();">` +
+																	`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
+																	`<div class="ad2"  style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
+																							  background-color:#88C9F2; color:white; text-align:center; border:1px;
+																							  border-radius:14px; opacity:75%; display:none">평점:4.0<br> 주소: \${list[1].address} </div>`+                   
+																`</div>`
+															 ].join('')
+															        	
+															       /*  size: new naver.maps.Size(22, 35),
+															        anchor: new naver.maps.Point(15, 35)  */
+															    },
+															    animation: naver.maps.Animation.BOUNCE
+															};
+														 let marker2 = new naver.maps.Marker(laundrymarker2);
+					       	}
 								
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */	
-					 /* 지도3번 */
-						var map = new naver.maps.Map('map3', {
-							center : new naver.maps.LatLng(lag, lat),
-							zoom : 15
-						});						
+										
 						/* addr의 %ㅁㅁ시% or %ㅁㅁ군% 본사 정보 한개 갖고오기 */
 						
 						/* 정보 없으면 "고객님 도시에는 본사가 없습니다" 멘트 */
 						
 						/* 그외 위경도 반경 5km 이내 빨래방 정보 갖고와 보여주기 (가게 이름+주소+평점)*/
 						
-									}
-					       	})
-						 })
+									
+							 })
+						})
 					}
 				}).open();
 	}
+				
 </script>
 
 </head>
@@ -306,9 +309,9 @@
 			<button type="submit" id="btn1">구독</button>
 		</form>
 	</div>
-	
-	
-	
+
+
+
 	<div id="map1" style="width: 50%; height: 400px;"></div>
 	<div id="map2" style="width: 50%; height: 400px;"></div>
 	<div id="map3" style="width: 50%; height: 400px;"></div>
