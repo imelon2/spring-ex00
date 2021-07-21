@@ -13,6 +13,8 @@
 <title>Insert title here</title>
 
 <script>
+
+
 var appRoot = "${appRoot}";
 var boardBno = "${board.bno}";
 var userid = "${pinfo.member.userid}";

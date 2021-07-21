@@ -20,7 +20,7 @@ $(function() {
 		var idVal = $("#signup-input1").val();
 		var messageElem = $("#id-message");
 		canUseId = false;
-		toggleEnableSubmit();
+		toggleEnableSubmit()
 		
 		if(idVal == "") {
 			//아이디가 입력 되어 있지 않을 때

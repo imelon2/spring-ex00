@@ -23,7 +23,6 @@ public class InitBinderEx1ControllerAdvice {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		log.info("init binder");
 		
 		binder.registerCustomEditor(MyData.class, new MyDataEditor());
 		

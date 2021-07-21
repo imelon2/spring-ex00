@@ -24,10 +24,11 @@
 	</beans:bean>
 	
 	<!-- file part 처리 -->
-	<beans:bean id="multipartResolver" 
+ 	<beans:bean id="multipartResolver" 
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
+
 	
 	<context:component-scan base-package="org.zerock.controller" />
 	
