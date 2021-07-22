@@ -107,4 +107,13 @@ public class TestRestServiceImpl implements TestRestService {
 		throw new RuntimeException(e);
 	}
 }
+
+
+
+	@Override
+	public String getuserid(String userid) {
+
+		return mapper.getuserid(userid);
+		
+	}
 }

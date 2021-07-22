@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.zerock.domain.AddressVO;
+import org.zerock.domain.TestVO;
 import org.zerock.service.TestRestService;
 
 import lombok.AllArgsConstructor;
@@ -88,11 +89,9 @@ public class TestController {
 	}
 
 	@PostMapping(value = "/registrerImg", produces = {"application/json; charset=utf-8"})
-	public void registrerImg(@RequestParam("file") MultipartFile file) {
-		/* log.info((file).getOriginalFilename()); */
-		/*
-		 * vo.setFileName((file).getOriginalFilename());
-		 */
+	@ResponseBody
+	public void registrerImg(TestVO vo,@RequestParam("file1") MultipartFile file) {
+		log.info(vo);
 		
 		service.registrerImg(file);
 	}

@@ -49,4 +49,11 @@ WHERE address != #{address} AND
 
 </select>
 
+<select id="getuserid" resultType="String">
+SELECT userid userid
+FROM tbl_member
+WHERE userid = #{userid}
+
+</select>
+
 </mapper>

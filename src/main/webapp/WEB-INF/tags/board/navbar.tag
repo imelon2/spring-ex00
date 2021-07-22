@@ -3,6 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+
+
 <c:url value="/board/list" var="listUrl">
 	<c:if test="${not empty cri.pageNum }">
 		<c:param name="pageNum" value="${cri.pageNum }"></c:param>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="bd1" tagdir="/WEB-INF/tags/testTags"%>
 
 <!DOCTYPE html>
 <html>
@@ -157,5 +157,10 @@ var map = new naver.maps.Map('map', mapOptions);
 
 	<button type="submit" id="btn1">구독</button>
 </form>
+<sec:authorize access="isAuthenticated()">
+<bd1:testTags>
+</bd1:testTags>
+</sec:authorize>
+
 </body>
 </html>

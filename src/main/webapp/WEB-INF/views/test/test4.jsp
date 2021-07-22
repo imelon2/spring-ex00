@@ -15,14 +15,13 @@ $(function() {
 		console.log("여기가능1");
 		var form = new FormData();
 		form.append("file1", $("#file1")[0].files[0] );
-		console.log(form);
-	/* 	var b2bid = $("#b2bid").val();
+		
+
+		var id = $("#b2bid").val();
 		var introduce = $("#introduce").val();
-		data = {
-				b2bid = b2bid
-				introduce = introduce
-			}
-		 */
+		form.append("id",id);
+		form.append("introduce", introduce);
+		 
 		
 		$.ajax({
 			type : "post",

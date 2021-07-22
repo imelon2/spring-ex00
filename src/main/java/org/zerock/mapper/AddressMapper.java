@@ -13,4 +13,6 @@ public interface AddressMapper {
 	public AddressVO getlatlag1();
 
 	public List<AddressVO> getlatlag2(AddressVO vo);
+
+	public String getuserid(String userid);
 }

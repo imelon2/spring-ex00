@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type=""></script>
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
 <meta charset="UTF-8">
@@ -16,10 +15,19 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53f2oltjp5"></script>
 </head>
+<style>
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
 <body>
 	<div id="map" style="width: 50%; height: 400px;"></div>
 
-	<script type="text/javascript">
+	<script type="text/javascript" ">
 		$(function() {
 			$.ajax({
 				type : 'post',
@@ -47,14 +55,14 @@
 					    map: map,
 					    icon: {
 					    	
-					    	
+
 					    	
 					        content: [	
-						        		`<div onmouseover="$('#ad1').show();" onmouseout="$('#ad1').hide();">` +
+						        		`<div onmouseover="$('#ad1').show();" onmouseout="$('#ad1').hide();" >` +
 							        		`<div><img src="${imgRoot}icon/blue_re-pict-house-base.png_32.png"></div>`+
 							        		`<div id="ad1" style="padding-top:5px; padding-bottom:5px; padding-left:5px; padding-right:5px;
 							        		background-color:#88C9F2; color:white; text-align:center; border:1px;
-							        		border-radius:14px; opacity:75%; display:none">평점:4.0 <br> 주소: 수내3동</div>`+
+							        		border-radius:14px; opacity:75%; display:none;">평점:4.0 <br> 주소: 수내3동</div>`+
 						        		`</div>`
 					        	
 					        	].join(''),
@@ -116,6 +124,6 @@
 			})
 		})
 	</script>
-
+<p style="font-family: 'GongGothicMedium';">안녕하세요 반가워용 </p>
 </body>
 </html>

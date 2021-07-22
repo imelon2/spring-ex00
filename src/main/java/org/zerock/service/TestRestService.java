@@ -18,4 +18,7 @@ public interface TestRestService {
 
 	public void registrerImg(MultipartFile file);
 
+	public String getuserid(String userid);
+
+
 }
