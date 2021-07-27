@@ -20,13 +20,20 @@
 	})
 
 </script>
+
+<script>
+
+function on123() {
+	
+    window.open(http://api.coolsms.co.kr/sendmsg?user=tester01&password=tester01&to=01077030500&from=01077030500&text=HELLO)
+	
+}
+</script> 
+
 </head>
 <body>
-<div class="container">
-<form id="form" action="123456789">
-	<input id="input">
-</form>
-</div>
+
+<button  onclick="on123()">ㅎㅇ</button>
 </body>
 </html>
 
