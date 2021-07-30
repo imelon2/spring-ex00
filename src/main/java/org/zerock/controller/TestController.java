@@ -9,14 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.coolsms.Coolsms;
 import org.zerock.domain.AddressVO;
+import org.zerock.domain.Test2VO;
 import org.zerock.domain.TestVO;
 import org.zerock.domain.smsVO;
 import org.zerock.service.TestRestService;
@@ -32,7 +36,44 @@ import net.nurigo.java_sdk.api.Message;
 public class TestController {
 
 	private TestRestService service;
+	
+	 @GetMapping("/test6") 
+	 public void test6() {
+	 
+	 }
+	
+	
+	@PostMapping("/test6")
+	@ResponseBody
+	public Test2VO test6(Long bno) {
 
+		Test2VO vo = service.getBnoInfo(bno);
+
+		
+		return vo;
+
+		
+	
+		
+	}
+	
+	@RequestMapping("/test7/{bno}")
+	public String test7(@PathVariable("bno") Long bno,RedirectAttributes rttr) {
+		service.getBnoInfo(bno);
+		Test2VO vo = service.getBnoInfo(bno);
+		log.info(vo);
+		rttr.addFlashAttribute("bno", vo.getBno());
+		rttr.addFlashAttribute("title",vo.getTitle());
+		rttr.addFlashAttribute("content", vo.getContent());
+		return "redirect:/test/test7";
+	}
+	
+	@GetMapping("/test7") 
+	 public void test7() {
+	 
+	 }
+	
+	
 	@RequestMapping("/test")
 	public void test() {
 

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.zerock.domain.AddressVO;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Test2VO;
 import org.zerock.mapper.AddressMapper;
 import org.zerock.mapper.ReplyMapper;
 
@@ -116,4 +117,12 @@ public class TestRestServiceImpl implements TestRestService {
 		return mapper.getuserid(userid);
 		
 	}
+
+	@Override
+	public Test2VO getBnoInfo(Long bno) {
+		
+		return mapper.getBnoInfo(bno);
+	}
+
+
 }

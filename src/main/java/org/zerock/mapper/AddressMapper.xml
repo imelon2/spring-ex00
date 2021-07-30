@@ -56,4 +56,10 @@ WHERE userid = #{userid}
 
 </select>
 
+<select id="getBnoInfo" resultType="org.zerock.domain.Test2VO">
+	SELECT bno bno, title title, content content
+	FROM tbl_board
+	WHERE bno = #{bno}
+</select>
+
 </mapper>

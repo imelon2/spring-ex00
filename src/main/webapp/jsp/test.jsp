@@ -30,10 +30,27 @@ function on123() {
 }
 </script> 
 
+<script type="text/javascript">
+$(function() {
+	$(".btn123").click(function() {
+	let abc = $("#select1 option:selected").val();
+	console.log(abc);
+		
+	})
+})
+</script>
 </head>
 <body>
+<select id="select1">
+	<option value="">--</option>
+	<option value="name">name</option>
+	<option value="address">address</option>
+</select>
+<button class="btn123">찾기</button>
 
 <button  onclick="on123()">ㅎㅇ</button>
+
+
 </body>
 </html>
 
