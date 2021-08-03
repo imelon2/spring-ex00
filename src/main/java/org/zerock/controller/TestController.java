@@ -176,5 +176,10 @@ public class TestController {
 		return "suc";
 
 	}
+	
+	@RequestMapping("/test8")
+	public void googleAPI() {
+		
+	}
 
 }
