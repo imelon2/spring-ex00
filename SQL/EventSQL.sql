@@ -15,13 +15,10 @@ VALUES(2, date("21-7-20"));
 
 SELECT date_ADD(curdate(), INTERVAL -15 day);
 
-SELECT curdate() +15;
+SELECT date_ADD(curdate(), INTERVAL -6 month);
 
 SELECT (TIMESTAMP(CURRENT_DATE) + INTERVAL 9 HOUR);
 
-UPDATE TestTime1 set count = count +1 WHERE id = 1;
-
-UPDATE TestTime1 SET dat = date_add(dat,INTERVAL -15 day) WHERE id =3;
 
 DELIMITER $$
 CREATE PROCEDURE autoDel()
@@ -41,13 +38,25 @@ DELIMITER ;
 CREATE EVENT autoAdd
 ON SCHEDULE
 EVERY 1 DAY
-STARTS (TIMESTAMP(CURRENT_DATE) + INTERVAL 9 HOUR)
+STARTS (TIMESTAMP(CURRENT_DATE) + INTERVAL 1 HOUR)
 DO
 CALL autoAdd();
 
-SELECT * FROM information_schema.events;
-ALTER EVENT autoDelEvent  DISABLE;
-SHOW VARIABLES LIKE 'event%'; 
+DELIMITER $$
+CREATE PROCEDURE autoDel()
+BEGIN
+DELETE FROM subsCancelList WHERE serviceCancelDate = date_ADD(curdate(), INTERVAL -6 month);
+END $$
+DELIMITER ;
+
+CREATE EVENT autoDel
+ON SCHEDULE
+EVERY 1 DAY
+STARTS (TIMESTAMP(CURRENT_DATE) + INTERVAL 1 HOUR)
+DO
+CALL autoDel();
+
+
 
 SHOW CREATE EVENT `autoAdd` ;
 DROP event `autoAdd` ;

@@ -16,31 +16,9 @@ SELECT * FROM b2bIntroduce;
 SELECT * FROM storeinfo;
 SELECT * FROM subscriber;
 SELECT * FROM cancelSubsBoard;
+SELECT * FROM subsCancelList;
 
-UPDATE subscriber
-SET serviceStartDate = '2021.7.22'
-WHERE subsId = 'subsuser3';
-                        
-SELECT
-	s.id id,
-	s.storeaddress storeaddress,
-	s.storename storename,
-	s.storePhonenum storePhonenum,
-	b.storeinfo storeinfo,
-	b.introduce introduce,
-	b.fileName fileName
-FROM storeinfo AS s  LEFT JOIN b2bIntroduce AS b ON b.id = 5
-WHERE s.id = 5;
+ALTER TABLE cancelSubsBoard ALTER COLUMN bno SET DEFAULT  + 1 ;
 
-CREATE TABLE cancelSubsBoard (
-bno INT PRIMARY KEY AUTO_INCREMENT,
-subsid VARCHAR(50) NOT NULL,
-title VARCHAR(50) NOT NULL,
-content VARCHAR(1000) NOT NULL,
-updatedate TIMESTAMP DEFAULT NOW()
-
-);
-
-ALTER TABLE cancelSubsBoard
-ADD FOREIGN KEY (subsid) REFERENCES subscriber(subsId);
+DELETE FROM cancelSubsBoard;
 
